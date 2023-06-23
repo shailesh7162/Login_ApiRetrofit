@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1FCD90"
+    tools:context=".Activies.MainActivity">
+   <ImageView
+       android:layout_width="@dimen/_300sdp"
+       android:layout_height="@dimen/_200sdp"
+       android:src="@drawable/img"
+       android:padding="@dimen/_10sdp"
+       android:layout_gravity="center"/>
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="SIGN UP"
+       android:gravity="center"
+       android:padding="@dimen/_10sdp"
+       android:textStyle="bold"
+       android:textColor="@color/black"
+       android:textSize="@dimen/_30sdp"/>
+
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/editemail"
+       android:text="Email"
+       android:gravity="center"
+       android:textStyle="bold"
+       android:layout_margin="@dimen/_10sdp" />
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/editePassword"
+       android:text="Password"
+       android:gravity="center"
+       android:textStyle="bold"
+       android:layout_margin="@dimen/_10sdp" />
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:text="login"
+       android:id="@+id/btnlogin"/>
+
+
+</LinearLayout>
