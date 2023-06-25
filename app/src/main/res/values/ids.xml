@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="Drawer" type="id" />
+    <item name="hader_name" type="id" />
+    <item name="hader_email" type="id" />
+</resources>
