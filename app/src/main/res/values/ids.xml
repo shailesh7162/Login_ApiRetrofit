@@ -3,4 +3,5 @@
     <item name="Drawer" type="id" />
     <item name="hader_name" type="id" />
     <item name="hader_email" type="id" />
+    <item name="apimage" type="id" />
 </resources>

@@ -2,30 +2,21 @@
 package com.example.login_apiretrofit.Modals;
 
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class Userdata
+{
+    private int id;
 
-
-public class Userdata {
-
-    @SerializedName("ID")
-    @Expose
-    private String id;
-    @SerializedName("NAME")
-    @Expose
     private String name;
-    @SerializedName("EMAIL")
-    @Expose
+
     private String email;
-    @SerializedName("PASSWORD")
-    @Expose
+
     private String password;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -53,13 +44,5 @@ public class Userdata {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Userdata{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+
 }

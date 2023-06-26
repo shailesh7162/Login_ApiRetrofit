@@ -1,14 +1,14 @@
 package com.example.login_apiretrofit.Activies;
 
-import android.annotation.SuppressLint;
+import static com.example.login_apiretrofit.Activies.Splash_ScreenActivity.editor;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,48 +22,44 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity
 {
-   EditText login_email,login_password;
+   EditText email,password;
    Button loginbtn;
-   TextView login_sign,login_continus;
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        login_email=findViewById(R.id.login_email);
-        login_password=findViewById(R.id.login_password);
+        email=findViewById(R.id.login_email);
+        password=findViewById(R.id.login_password);
         loginbtn=findViewById(R.id.loginbtn);
-        login_sign=findViewById(R.id.login_sign);
-        login_continus=findViewById(R.id.login_continus);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = login_email.getText().toString();
-                String password = login_password.getText().toString();
+                String semail,spassword;
+                 semail = email.getText().toString();
+                 spassword = password.getText().toString();
 
                 Log.d("TTT", "onClick: email="+email+"/tPass="+password);
 
-                Retro_Instance_Class.CallApi().LOGIN_USER_CALL(email,password).enqueue(new Callback<LoginUser>() {
-                    private SharedPreferences.Editor editor;
+                Retro_Instance_Class.CallApi().LOGIN_USER_CALL(semail,spassword).enqueue(new Callback<LoginUser>() {
 
                     @Override
                     public void onResponse(Call<LoginUser> call, Response<LoginUser> response)
                     {
                         if(response.body().getResult()==1)
                         {
-                            Log.d("TTT", "onResponse: " + response.body().getUserdata().getId());
-                            Log.d("TTT", "onResponse: " + response.body().getResult());
-
                             editor.putBoolean("isLogin",true);
                             editor.putString("name",response.body().getUserdata().getName());
                             editor.putString("email",response.body().getUserdata().getEmail());
-                            editor.putInt("uid", Integer.parseInt(response.body().getUserdata().getId()));
+                            editor.putInt("usrid", response.body().getUserdata().getId());
+                            editor.apply();
                             editor.commit();
 
                             Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
+                        }else {
+                            Toast.makeText(LoginActivity.this, "account not found ", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -76,13 +72,6 @@ public class LoginActivity extends AppCompatActivity
                 });
             }
         });
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }
 }

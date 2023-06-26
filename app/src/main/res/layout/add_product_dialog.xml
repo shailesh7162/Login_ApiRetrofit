@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="410dp"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/baseline_add_shopping_cart_24"
+
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PRODUCT NAME"
+        android:id="@+id/apname"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:elevation="1dp"
+        />
+
+    <EditText
+        android:id="@+id/apdis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:hint="PRODUCT DESCRIPTION"
+        android:inputType="textEmailAddress"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:elevation="1dp"
+        />
+    <EditText
+        android:id="@+id/apprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:hint="PRODUCT PRICE"
+        android:inputType="textEmailAddress"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:elevation="1dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  ADD  "
+            android:background="#15C31C"
+            app:backgroundTint="@null"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:id="@+id/add"
+            android:layout_marginHorizontal="10dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CANCEL"
+            android:background="#EA1010"
+            app:backgroundTint="@null"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:id="@+id/cancel"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

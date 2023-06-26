@@ -17,4 +17,4 @@ public class Retro_Instance_Class
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
         return  retrofitAPI;
     }
-}
+ }
