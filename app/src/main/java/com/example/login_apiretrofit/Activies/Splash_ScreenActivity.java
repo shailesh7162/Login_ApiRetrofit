@@ -1,13 +1,12 @@
 package com.example.login_apiretrofit.Activies;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login_apiretrofit.R;
 
@@ -38,7 +37,7 @@ public class Splash_ScreenActivity extends AppCompatActivity
                 }
                 else {
                     Log.e("EEE", "onCreate: "+isLogin );
-                    Intent intent = new Intent(Splash_ScreenActivity.this, MainActivity.class);
+                    Intent intent = new Intent(Splash_ScreenActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }

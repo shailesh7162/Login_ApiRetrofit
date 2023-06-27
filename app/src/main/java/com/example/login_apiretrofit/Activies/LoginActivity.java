@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login_apiretrofit.Modals.LoginUser;
+import com.example.login_apiretrofit.Modals.LoginData;
 import com.example.login_apiretrofit.Modals.Retro_Instance_Class;
 import com.example.login_apiretrofit.R;
 
@@ -41,10 +41,10 @@ public class LoginActivity extends AppCompatActivity
 
                 Log.d("TTT", "onClick: email="+email+"/tPass="+password);
 
-                Retro_Instance_Class.CallApi().LOGIN_USER_CALL(semail,spassword).enqueue(new Callback<LoginUser>() {
+                Retro_Instance_Class.CallApi().LOGIN_USER_CALL(semail,spassword).enqueue(new Callback<LoginData>() {
 
                     @Override
-                    public void onResponse(Call<LoginUser> call, Response<LoginUser> response)
+                    public void onResponse(Call<LoginData> call, Response<LoginData> response)
                     {
                         if(response.body().getResult()==1)
                         {
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity
                     }
 
                     @Override
-                    public void onFailure(Call<LoginUser> call, Throwable t)
+                    public void onFailure(Call<LoginData> call, Throwable t)
                     {
                         Log.e("TTT", "onFailure: "+t.getLocalizedMessage());
                     }

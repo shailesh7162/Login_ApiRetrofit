@@ -58,7 +58,7 @@
    <EditText
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="Enter the Email"
+       android:hint="Enter the Email"
        android:id="@+id/login_email"
        android:background="@drawable/forget"
        android:layout_marginLeft="35dp"
@@ -78,7 +78,7 @@
    <EditText
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="Enter the Password"
+       android:hint="Enter the Password"
        android:background="@drawable/forget"
        android:id="@+id/login_password"
        android:layout_marginLeft="35dp"

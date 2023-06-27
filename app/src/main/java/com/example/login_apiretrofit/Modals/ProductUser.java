@@ -31,11 +31,4 @@ public class ProductUser {
         this.productaddd = productaddd;
     }
 
-    @Override
-    public String toString() {
-        return "ProductData{" +
-                "connection=" + connection +
-                ", productaddd=" + productaddd +
-                '}';
-    }
 }

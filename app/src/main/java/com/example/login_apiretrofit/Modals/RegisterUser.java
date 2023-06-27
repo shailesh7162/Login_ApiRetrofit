@@ -2,9 +2,8 @@ package com.example.login_apiretrofit.Modals;
 
 public class RegisterUser
 {
-    private Integer connection;
-
-    private Integer result;
+    Integer connection;
+    Integer result;
 
     public Integer getConnection() {
         return connection;
@@ -20,13 +19,5 @@ public class RegisterUser
 
     public void setResult(Integer result) {
         this.result = result;
-    }
-
-    @Override
-    public String toString() {
-        return "RegisterData{" +
-                "connection=" + connection +
-                ", result=" + result +
-                '}';
     }
 }

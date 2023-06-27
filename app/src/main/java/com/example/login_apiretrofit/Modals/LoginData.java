@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class LoginUser {
+public class LoginData {
 
     @SerializedName("connection")
     @Expose
@@ -42,12 +42,4 @@ public class LoginUser {
         this.userdata = userdata;
     }
 
-    @Override
-    public String toString() {
-        return "LoginData{" +
-                "connection=" + connection +
-                ", result=" + result +
-                ", userdata=" + userdata +
-                '}';
-    }
 }

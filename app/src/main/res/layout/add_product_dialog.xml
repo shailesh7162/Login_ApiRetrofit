@@ -48,6 +48,17 @@
         android:textAlignment="center"
         android:elevation="1dp"
         />
+    <EditText
+        android:id="@+id/apimage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:hint="PRODUCT IMAGE"
+        android:inputType="textEmailAddress"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:elevation="1dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

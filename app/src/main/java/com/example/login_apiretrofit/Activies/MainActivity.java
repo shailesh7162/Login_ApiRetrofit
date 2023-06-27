@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 spprice = pprice.getText().toString();
                 spimage = pimage.getText().toString();
                 spname = pname.getText().toString();
-                Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(String.valueOf(uid), spname, spprice, spdisc, spimage)
+                Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(uid, spname, spprice, spdisc, spimage)
                         .enqueue(new Callback<ProductUser>() {
                             @Override
                             public void onResponse(Call<ProductUser> call, Response<ProductUser> response) {

@@ -1,5 +1,6 @@
 package com.example.login_apiretrofit.Activies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,6 +61,9 @@ public class RegisterActivity extends AppCompatActivity
                        if(response.body().getResult()==1){
 
                            Toast.makeText(RegisterActivity.this, "successfully register", Toast.LENGTH_LONG).show();
+                           Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                           startActivity(intent);
+                           finish();
                        } else if (response.body().getResult()==2) {
                            Toast.makeText(RegisterActivity.this, "Already register", Toast.LENGTH_LONG).show();
 
@@ -70,7 +74,8 @@ public class RegisterActivity extends AppCompatActivity
                    }
 
                    @Override
-                   public void onFailure(Call<RegisterUser> call, Throwable t) {
+                   public void onFailure(Call<RegisterUser> call, Throwable t)
+                   {
 
                    }
                });
