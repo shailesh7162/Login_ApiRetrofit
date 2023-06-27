@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login_apiretrofit.Modals.RegisterUser;
-import com.example.login_apiretrofit.Modals.Retro_Instance_Class;
+import com.example.login_apiretrofit.Modals.RegisterData;
+import com.example.login_apiretrofit.Retro_Instance_Class;
 import com.example.login_apiretrofit.R;
 
 import retrofit2.Call;
@@ -52,9 +52,9 @@ public class RegisterActivity extends AppCompatActivity
                semail=email.getText().toString();
                spassword=password.getText().toString();
 
-               Retro_Instance_Class.CallApi().REGISTER_USER_CALL(sname,semail,spassword).enqueue(new Callback<RegisterUser>() {
+               Retro_Instance_Class.CallApi().REGISTER_USER_CALL(sname,semail,spassword).enqueue(new Callback<RegisterData>() {
                    @Override
-                   public void onResponse(Call<RegisterUser> call, Response<RegisterUser> response) {
+                   public void onResponse(Call<RegisterData> call, Response<RegisterData> response) {
                        Log.d("TAG", "onResponse: "+response.body().toString());
 
                        Log.d("con", "onResponse: Connection"+ response.body().getConnection());
@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity
                    }
 
                    @Override
-                   public void onFailure(Call<RegisterUser> call, Throwable t)
+                   public void onFailure(Call<RegisterData> call, Throwable t)
                    {
 
                    }

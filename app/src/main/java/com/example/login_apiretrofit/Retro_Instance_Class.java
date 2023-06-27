@@ -1,4 +1,4 @@
-package com.example.login_apiretrofit.Modals;
+package com.example.login_apiretrofit;
 
 import com.example.login_apiretrofit.RetrofitAPI;
 

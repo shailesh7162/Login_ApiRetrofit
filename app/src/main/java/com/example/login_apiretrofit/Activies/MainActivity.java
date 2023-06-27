@@ -22,8 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.login_apiretrofit.Modals.ProductUser;
-import com.example.login_apiretrofit.Modals.Retro_Instance_Class;
+import com.example.login_apiretrofit.Modals.addProductData;
+import com.example.login_apiretrofit.Retro_Instance_Class;
 import com.example.login_apiretrofit.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -95,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
                 spimage = pimage.getText().toString();
                 spname = pname.getText().toString();
                 Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(uid, spname, spprice, spdisc, spimage)
-                        .enqueue(new Callback<ProductUser>() {
+                        .enqueue(new Callback<addProductData>() {
                             @Override
-                            public void onResponse(Call<ProductUser> call, Response<ProductUser> response) {
+                            public void onResponse(Call<addProductData> call, Response<addProductData> response) {
 
                             }
 
                             @Override
-                            public void onFailure(Call<ProductUser> call, Throwable t) {
+                            public void onFailure(Call<addProductData> call, Throwable t) {
 
                             }
                         });

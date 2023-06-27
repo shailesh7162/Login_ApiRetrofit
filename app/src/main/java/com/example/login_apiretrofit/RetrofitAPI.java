@@ -1,8 +1,8 @@
 package com.example.login_apiretrofit;
 
 import com.example.login_apiretrofit.Modals.LoginData;
-import com.example.login_apiretrofit.Modals.ProductUser;
-import com.example.login_apiretrofit.Modals.RegisterUser;
+import com.example.login_apiretrofit.Modals.addProductData;
+import com.example.login_apiretrofit.Modals.RegisterData;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -13,7 +13,7 @@ public interface RetrofitAPI
 {
     @FormUrlEncoded
     @POST("Register.php")
-    Call<RegisterUser> REGISTER_USER_CALL(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+    Call<RegisterData> REGISTER_USER_CALL(@Field("name") String name, @Field("email") String email, @Field("password") String password);
 
     @FormUrlEncoded
     @POST("login.php")
@@ -21,7 +21,7 @@ public interface RetrofitAPI
 
     @FormUrlEncoded
     @POST("addProduct.php")
-    Call<ProductUser> PRODUCT_USER_CALL(@Field("userid") int usrid, @Field("pname") String pname, @Field("pprize") String pprize, @Field("pdes") String pdes, @Field("productimage") String productimage);
+    Call<addProductData> PRODUCT_USER_CALL(@Field("userid") int usrid, @Field("pname") String pname, @Field("pprize") String pprize, @Field("pdes") String pdes, @Field("productimage") String productimage);
 
 
 }

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login_apiretrofit.Modals.LoginData;
-import com.example.login_apiretrofit.Modals.Retro_Instance_Class;
+import com.example.login_apiretrofit.Retro_Instance_Class;
 import com.example.login_apiretrofit.R;
 
 import retrofit2.Call;

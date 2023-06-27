@@ -1,6 +1,6 @@
 package com.example.login_apiretrofit.Modals;
 
-public class RegisterUser
+public class RegisterData
 {
     Integer connection;
     Integer result;

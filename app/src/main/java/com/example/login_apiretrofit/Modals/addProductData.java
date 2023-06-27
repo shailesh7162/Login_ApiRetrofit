@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class ProductUser {
+public class addProductData {
 
     @SerializedName("connection")
     @Expose
