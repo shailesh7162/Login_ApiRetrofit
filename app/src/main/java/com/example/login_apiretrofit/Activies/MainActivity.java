@@ -6,8 +6,11 @@ import static com.example.login_apiretrofit.Activies.Splash_ScreenActivity.prefe
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,10 +26,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.login_apiretrofit.Modals.addProductData;
-import com.example.login_apiretrofit.Retro_Instance_Class;
 import com.example.login_apiretrofit.R;
+import com.example.login_apiretrofit.Retro_Instance_Class;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Base64;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button button;
 
-    ImageView imageView;
+    ImageView  pimage;
     int gellery=10;
+    String imagedata;
 
 
     @Override
@@ -59,18 +68,12 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         logout();
 
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent,gellery);
-        });
-
 
         floatingActionButton.setOnClickListener(v -> {
             Dialog dialog = new Dialog(MainActivity.this);
             dialog.setContentView(R.layout.add_product_dialog);
 
-            EditText pname, pprice, pdisc, pimage;
+            EditText pname, pprice, pdisc;
 
             int uid;
             uid = preferences.getInt("userid", 0);
@@ -86,15 +89,28 @@ public class MainActivity extends AppCompatActivity {
             cancel.setOnClickListener(view -> {
                 dialog.dismiss();
             });
+            pimage.setOnClickListener(view -> {
+
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .start(this);
+            });
 
 
             add.setOnClickListener(v1 -> {
-                String spname, spprice, spdisc, spimage;
+                String spname, spprice, spdisc;
                 spdisc = pdisc.getText().toString();
                 spprice = pprice.getText().toString();
-                spimage = pimage.getText().toString();
                 spname = pname.getText().toString();
-                Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(uid, spname, spprice, spdisc, spimage)
+
+                Bitmap bitmap = ((BitmapDrawable) pimage.getDrawable()).getBitmap();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] imageinarayy = byteArrayOutputStream.toByteArray();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    imagedata = Base64.getEncoder().encodeToString(imageinarayy);
+                }
+                Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(uid, spname, spprice, spdisc,imagedata)
                         .enqueue(new Callback<addProductData>() {
                             @Override
                             public void onResponse(Call<addProductData> call, Response<addProductData> response) {
@@ -123,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         floatingActionButton = findViewById(R.id.fab);
-        button = findViewById(R.id.btnimg);
-        imageView = findViewById(R.id.H_img);
     }
     private void setname() {
         toolbar.setTitle("E_Commerce app ");
@@ -171,10 +185,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK);
-        {
-            if(requestCode==gellery){
-                imageView.setImageURI(data.getData());
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) ;
+            {
+                Uri uri = result.getUri();
+                pimage.setImageURI(uri);
+
             }
         }
     }
