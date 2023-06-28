@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
 
     ImageView  pimage;
-    int gellery=10;
-    String imagedata;
+    String imageget;
 
 
     @Override
@@ -59,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();//reffrence
-        setname(); //toolbar set in drawer user name and email set
+        function();
+        Nameset();
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.open, R.string.close);
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             pname = dialog.findViewById(R.id.apname);
             pprice = dialog.findViewById(R.id.apprice);
             pdisc = dialog.findViewById(R.id.apdis);
-            pimage = dialog.findViewById(R.id.apimage);
+            pimage=dialog.findViewById(R.id.apimage);
             add = dialog.findViewById(R.id.add);
             cancel = dialog.findViewById(R.id.cancel);
 
@@ -103,14 +102,15 @@ public class MainActivity extends AppCompatActivity {
                 spprice = pprice.getText().toString();
                 spname = pname.getText().toString();
 
+
                 Bitmap bitmap = ((BitmapDrawable) pimage.getDrawable()).getBitmap();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 byte[] imageinarayy = byteArrayOutputStream.toByteArray();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    imagedata = Base64.getEncoder().encodeToString(imageinarayy);
+                    imageget = Base64.getEncoder().encodeToString(imageinarayy);
                 }
-                Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(uid, spname, spprice, spdisc,imagedata)
+                Retro_Instance_Class.CallApi().PRODUCT_USER_CALL(uid, spname, spprice, spdisc,imageget)
                         .enqueue(new Callback<addProductData>() {
                             @Override
                             public void onResponse(Call<addProductData> call, Response<addProductData> response) {
@@ -134,14 +134,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void init() {
+    private void function() {
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         floatingActionButton = findViewById(R.id.fab);
     }
-    private void setname() {
-        toolbar.setTitle("E_Commerce app ");
+    private void Nameset() {
+        toolbar.setTitle("ECommerce app ");
         setSupportActionBar(toolbar);
         name = preferences.getString("name", "");
         email = preferences.getString("email", "");
