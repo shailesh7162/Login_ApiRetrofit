@@ -11,7 +11,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/user"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:id="@+id/header_image"/>
 
     <TextView
         android:id="@+id/header_name"

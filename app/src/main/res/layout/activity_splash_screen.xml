@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SplashScreen"
+        android:text="E Commerce app"
         android:textSize="@dimen/_50sdp"/>
 
 </LinearLayout>

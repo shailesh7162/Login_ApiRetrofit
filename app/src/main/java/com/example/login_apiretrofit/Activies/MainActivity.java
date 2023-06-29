@@ -11,11 +11,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +27,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login_apiretrofit.Modals.ProductCategories;
 import com.example.login_apiretrofit.Modals.addProductData;
+import com.example.login_apiretrofit.Modals.viewProductData;
 import com.example.login_apiretrofit.R;
 import com.example.login_apiretrofit.Retro_Instance_Class;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +42,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView  pimage;
     String imageget;
+    ProgressBar progressBar;
+    RecyclerView recyclerView;
+    int gellery = 10;
 
 
     @Override
@@ -60,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         function();
-        Nameset();
-
+        nameset();
+        show_product_method();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -142,8 +152,12 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         floatingActionButton = findViewById(R.id.fab);
+        View view = navigationView.getHeaderView(0);
+        // imageView = view.findViewById(R.id.header_image);
+        recyclerView=findViewById(R.id.recycler);
+        progressBar=findViewById(R.id.ProgressBar);
     }
-    private void Nameset() {
+    private void nameset() {
         toolbar.setTitle("ECommerce app ");
         setSupportActionBar(toolbar);
         name = preferences.getString("name", "");
@@ -153,6 +167,43 @@ public class MainActivity extends AppCompatActivity {
         header_email = view.findViewById(R.id.header_email);
         header_name.setText(name);
         header_email.setText(email);
+    }
+    private void show_product_method(){
+        int userid =preferences.getInt("userid",2);
+        Retro_Instance_Class.CallApi().VIEW_PRODUCT_DATA_CALL(userid).enqueue(new Callback<viewProductData>() {
+            @Override
+            public void onResponse(Call<viewProductData> call, Response<viewProductData> response) {
+                List<ProductCategories> Userdata;
+                Userdata= response.body().getProductdata();
+                if(Userdata!=null){
+                    progressBar.setVisibility(View.GONE);
+                }
+                for (int i = 0; i < Userdata.size(); i++) {
+                    Log.d("API", "onResponse: name="+Userdata.get(i).getPname());
+                }
+
+//
+                if (response.isSuccessful()) {
+
+
+                    if (response.body().getConnection() == 1) {
+                        if (response.body().getResult() == 1) {
+                            show_product_adapter adapter = new show_product_adapter(MainActivity.this, Userdata);
+                            LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this);
+                            manager.setOrientation(RecyclerView.VERTICAL);
+                            recyclerView.setLayoutManager(manager);
+
+                            recyclerView.setAdapter(adapter);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<viewProductData> call, Throwable t) {
+
+            }
+        });
+
     }
     private void logout()
     {
