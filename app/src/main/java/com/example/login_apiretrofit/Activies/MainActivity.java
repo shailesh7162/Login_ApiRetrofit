@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -114,7 +115,9 @@ public class MainActivity extends AppCompatActivity {
                         .enqueue(new Callback<addProductData>() {
                             @Override
                             public void onResponse(Call<addProductData> call, Response<addProductData> response) {
-
+                                if (response.body().getProductaddd() == 1) {
+                                    Toast.makeText(MainActivity.this, "product Added", Toast.LENGTH_LONG).show();
+                                }
                             }
 
                             @Override

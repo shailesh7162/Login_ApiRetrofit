@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Product_get_model {
+public class viewProductData {
     @SerializedName("connection")
     @Expose
     private Integer connection;

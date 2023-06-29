@@ -3,6 +3,7 @@ package com.example.login_apiretrofit;
 import com.example.login_apiretrofit.Modals.LoginData;
 import com.example.login_apiretrofit.Modals.addProductData;
 import com.example.login_apiretrofit.Modals.RegisterData;
+import com.example.login_apiretrofit.Modals.viewProductData;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -23,5 +24,7 @@ public interface RetrofitAPI
     @POST("addProduct.php")
     Call<addProductData> PRODUCT_USER_CALL(@Field("userid") int usrid, @Field("pname") String pname, @Field("pprize") String pprize, @Field("pdes") String pdes, @Field("productimage") String productimage);
 
-
+    @FormUrlEncoded
+    @POST("viewProduct.php")
+    Call<viewProductData> VIEW_PRODUCT_DATA_CALL(@Field("userid") int usrid);
 }
